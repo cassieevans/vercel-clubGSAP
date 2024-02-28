@@ -3,9 +3,12 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+/* The following plugins are Club GSAP perks */
+import { GSDevTools } from "gsap/GSDevTools";
+import { MorphSVGPlugin } from "gsap/MorphSVGPlugin";
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(useGSAP,GSDevTools,MorphSVGPlugin);
 }
 
 export default function Home() {
@@ -24,6 +27,8 @@ export default function Home() {
         .to(".box-2", { x: -120, rotation: -360 }, '<')
         .to(".box-3", { y: -166 })
         .reverse();
+      
+      GSDevTools.create();
     },
     { scope: container }
   );
@@ -31,7 +36,7 @@ export default function Home() {
   return (
     <main>
       <section className="boxes-container" ref={container}>
-        <h2>Yarn, Next.js, Vercel</h2>
+        <h2>npm, Next.js, Vercel</h2>
         <div>
           <button onClick={toggleTimeline}>Toggle Timeline</button>
         </div>
